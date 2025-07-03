@@ -5,6 +5,7 @@ export const analyzeStyle = async (base64Image) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+         "HTTP-Referer": "https://ai-life-coach-iota.vercel.app",
         Authorization: `Bearer ${import.meta.env.VITE_OPENROUTER_API_KEY}`,
       },
       body: JSON.stringify({
