@@ -1,0 +1,19 @@
+// src/firebase.js
+import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getFirestore } from "firebase/firestore"; 
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCU0JuGFXYqGNtApcgtN8Zd1mGG07Zba80",
+  authDomain: "aicoach-7bb37.firebaseapp.com",
+  projectId: "aicoach-7bb37",
+  storageBucket: "aicoach-7bb37.appspot.com",
+  messagingSenderId: "7901375747",
+  appId: "1:7901375747:web:b7d52fa9496e08f436cd36",
+  measurementId: "G-7N5P1Y9HZ6",
+};
+
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const provider = new GoogleAuthProvider();
+export const db = getFirestore(app);
