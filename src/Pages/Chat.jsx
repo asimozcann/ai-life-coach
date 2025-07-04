@@ -1,10 +1,12 @@
-import { Fragment } from "react";
+import { Fragment, Suspense } from "react";
 import ChatAI from "../components/Chat/ChatAI";
 
 const ChatPage = () => {
   return (
     <Fragment>
-      <ChatAI />
+      <Suspense fallback={<div>Yükleniyor...</div>}>
+        <ChatAI />
+      </Suspense>
     </Fragment>
   );
 };
