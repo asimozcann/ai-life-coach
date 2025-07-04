@@ -13,13 +13,11 @@ Her öneriyi 2-3 cümle ile detaylandır.`;
 
   const response = await fetch(
     "https://openrouter.ai/api/v1/chat/completions",
+    console.log("✅ KEY:", import.meta.env.VITE_OPENROUTER_API_KEY),
     {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${console.log(
-          "🧪 API KEY:",
-          import.meta.env.VITE_OPENROUTER_API_KEY
-        )} `,
+        Authorization: `Bearer ${import.meta.env.VITE_OPENROUTER_API_KEY} `,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
