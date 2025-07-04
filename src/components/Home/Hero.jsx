@@ -6,26 +6,29 @@ const Hero = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="relative h-screen flex flex-col justify-center items-center text-center bg-gradient-to-br from-[#1e0030] to-[#0e0018] text-white px-4 mt-14">
-      <div className="absolute inset-0  opacity-10 bg-cover bg-center z-0">
+    <section className="relative h-screen flex flex-col justify-center items-center text-center bg-gradient-to-br from-[#1e0030] to-[#0e0018] text-white px-4 mt-14 overflow-hidden">
+      <div className="absolute inset-0 opacity-10 z-0">
         <video
-         src="/videos/6153453-hd_2048_1080_25fps.mp4"
+          src="/videos/hero.mp4"
           autoPlay
           loop
           muted
           playsInline
+          preload="none"
+          aria-hidden="true"
+          role="presentation"
           className="w-full h-full object-cover"
         />
-      </div>
-
-      <h1 className="text-4xl md:text-6xl font-bold z-10 drop-shadow-xl">
+      </div>  
+      <h1 className="text-4xl md:text-6xl  font-bold z-10 drop-shadow-xl">
         Dijital Koçunla Hayatını Dönüştür
       </h1>
       <p className="text-lg md:text-xl mt-4 max-w-2xl z-10">
         Yapay zekâ destekli yaşam koçunla alışkanlıklarını geliştir, stilini
         keşfet, motivasyonunu artır.
       </p>
-      <div className="mt-6 flex md:flex-row flex-col gap-4  z-10">
+
+      <div className="mt-6 flex md:flex-row flex-col gap-4 z-10">
         <button
           onClick={() => navigate("/chat")}
           className="bg-cyan-400 hover:bg-cyan-300 text-black px-6 py-2 rounded-xl shadow-lg transition"
@@ -40,6 +43,7 @@ const Hero = () => {
         </button>
       </div>
 
+      {/* Modal */}
       {showModal && (
         <div
           className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50"

@@ -1,14 +1,17 @@
 import Hero from "../components/Home/Hero";
 import HowItWorks from "../components/Home/HowItsWork";
 import Features from "../components/Home/Features";
+import { Fragment, Suspense } from "react";
 
 const HomePage = () => {
   return (
-    <div className="relative">
-      <Hero />
-      <Features />
-      <HowItWorks />
-    </div>
+    <Fragment>
+      <Suspense fallback={<div>Yükleniyor...</div>}>
+        <Hero />
+        <Features />
+        <HowItWorks />
+      </Suspense>
+    </Fragment>
   );
 };
 

@@ -1,25 +1,36 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
 import LogoutButton from "./Login/LogoutButton";
 import LoginButton from "./Login/LoginButton";
-import Lottie from "lottie-react";
-import logoAnim from "../assets/animations/logo.json";
-import { Menu, X } from "lucide-react"; // Hamburger ve kapama ikonları
-
+import { Menu, X } from "lucide-react";
+const LiteLottie = React.lazy(() => import("./LottieLite/LiteLottie"));
 const MainNavigation = () => {
   const { user } = useUser();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [logoAnimation, setLogoAnimation] = useState(null);
+
+  useEffect(() => {
+    fetch("/animations/logo.json")
+      .then((res) => res.json())
+      .then(setLogoAnimation);
+  }, []);
 
   return (
     <nav className="bg-gray-900 text-white px-6 py-4 flex fixed w-full top-0 left-0 h-[72px] items-center justify-between shadow-lg z-50">
-      {/* Logo */}
       <Link
         to="/"
         className="flex items-center gap-2 font-bold text-cyan-400 text-xl"
       >
         <div className="w-10 h-10">
-          <Lottie animationData={logoAnim} loop autoplay />
+          {logoAnimation && (
+            <LiteLottie
+              alt="Ana Sayfa"
+              animationData={logoAnimation}
+              loop
+              autoplay
+            />
+          )}
         </div>
         <h1 className="hidden md:block">Yaşam Koçum</h1>
       </Link>
@@ -54,14 +65,14 @@ const MainNavigation = () => {
       </ul>
 
       {/* Sağ üst köşe: Profil + Menü butonu */}
-      <div className=" lg:flex hidden items-center gap-3">
+      <div className="lg:flex hidden items-center gap-3">
         {user ? (
           <>
             <div className="hidden lg:flex items-center gap-2">
               <img
                 src={user.photo}
                 alt="profil"
-                className="w-8 h-8  rounded-full border border-cyan-400"
+                className="w-8 h-8 rounded-full border border-cyan-400"
               />
               <span className="text-sm lg:block hidden">{user.name}</span>
             </div>
@@ -70,15 +81,16 @@ const MainNavigation = () => {
         ) : (
           <LoginButton />
         )}
-
-        {/* Hamburger Buton (küçük ekranlarda gösterilir) */}
       </div>
+
+      {/* Hamburger butonu */}
       <button className="lg:hidden" onClick={() => setMenuOpen(!menuOpen)}>
         {menuOpen ? <X size={28} /> : <Menu size={28} />}
       </button>
+
       {/* Mobil Menü */}
       {menuOpen && (
-        <div className="lg:hidden absolute top-[72px] left-0 w-full bg-gray-900 text-white px-6 py-2 flex flex-col gap-2 shadow-md z-40 ">
+        <div className="lg:hidden absolute top-[72px] left-0 w-full bg-gray-900 text-white px-6 py-2 flex flex-col gap-2 shadow-md z-40">
           <div className="flex flex-col items-center gap-3">
             <Link
               className="hover:text-cyan-400"
@@ -116,6 +128,7 @@ const MainNavigation = () => {
               Geçmiş
             </Link>
           </div>
+
           {user ? (
             <div className="flex items-center justify-between mt-4">
               <div className="flex items-center gap-2">

@@ -23,7 +23,7 @@ const HistoryDetail = () => {
     <div className="relative min-h-screen bg-gradient-to-b from-[#1e0030] to-[#0e0018] text-white p-6 mt-16">
       <div className="absolute inset-0 opacity-10 bg-cover bg-center z-0 pointer-events-none">
         <video
-          src="/videos/3141208-hd_1920_1080_25fps.mp4"
+          src="/videos/bg.mp4"
           autoPlay
           loop
           muted
