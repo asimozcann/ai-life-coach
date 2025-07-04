@@ -16,8 +16,10 @@ Her öneriyi 2-3 cümle ile detaylandır.`;
     {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${import.meta.env.VITE_OPENROUTER_API_KEY}`,
-        "HTTP-Referer": "https://ai-life-coach-ozcan.vercel.app/",
+        Authorization: `Bearer ${console.log(
+          "🧪 API KEY:",
+          import.meta.env.VITE_OPENROUTER_API_KEY
+        )} `,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -33,7 +35,6 @@ Her öneriyi 2-3 cümle ile detaylandır.`;
       }),
     }
   );
-
   const data = await response.json();
 
   if (!response.ok) {
