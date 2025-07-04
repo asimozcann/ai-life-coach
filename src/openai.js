@@ -8,7 +8,7 @@ export const analyzeStyle = async (base64Image) => {
         Authorization: `Bearer ${import.meta.env.VITE_OPENROUTER_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "openai/gpt-4o",
+        model: "openai/gpt-4o-2024-11-20",
         messages: [
           {
             role: "system",
