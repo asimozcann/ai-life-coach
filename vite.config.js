@@ -5,15 +5,20 @@ import path from "path";
 export default defineConfig({
   plugins: [react()],
   build: {
-    target: "esnext", // modern tarayıcılar için optimize
-    minify: "esbuild", // daha hızlı ve etkili minify
+    target: "esnext",
+    minify: "esbuild",
     sourcemap: false,
     rollupOptions: {
       output: {
         manualChunks(id) {
           if (id.includes("node_modules")) {
-            // Büyük kütüphaneleri ayrı chunk yap
-            if (id.includes("react")) return "vendor-react";
+            if (
+              id.includes("react") ||
+              id.includes("react-dom") ||
+              id.includes("react/jsx-runtime")
+            ) {
+              return "vendor-react";
+            }
             if (id.includes("firebase")) return "vendor-firebase";
             if (id.includes("axios")) return "vendor-axios";
             return "vendor";
@@ -24,7 +29,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"), // daha düzenli import
+      "@": path.resolve(__dirname, "src"),
     },
   },
 });
