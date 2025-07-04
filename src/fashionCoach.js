@@ -11,28 +11,28 @@ Sen kişisel bir moda koçusun. Kullanıcının verdiği bilgilere göre üst gi
 
 Her öneriyi 2-3 cümle ile detaylandır.`;
 
-  const response = await fetch(
-    "https://openrouter.ai/api/v1/chat/completions",
-    console.log("✅ KEY:", import.meta.env.VITE_OPENROUTER_API_KEY),
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${import.meta.env.VITE_OPENROUTER_API_KEY} `,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "openai/gpt-3.5-turbo-0613",
-        messages: [
-          {
-            role: "system",
-            content:
-              "Sen deneyimli bir moda koçusun, cinsiyet ve diğer bilgilere göre öneri veriyorsun.",
-          },
-          { role: "user", content: prompt },
-        ],
-      }),
-    }
-  );
+  const response = await fetch("https://openrouter.ai/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${import.meta.env.VITE_OPENROUTER_API_KEY}`,
+      "Content-Type": "application/json",
+      "HTTP-Referer": "https://ai-life-coach-ozcan.vercel.app/",
+    },
+    body: JSON.stringify({
+      model: "openai/gpt-3.5-turbo-0613",
+      messages: [
+        {
+          role: "system",
+          content:
+            "Sen deneyimli bir moda koçusun, cinsiyet ve diğer bilgilere göre öneri veriyorsun.",
+        },
+        {
+          role: "user",
+          content: prompt,
+        },
+      ],
+    }),
+  });
   const data = await response.json();
 
   if (!response.ok) {
