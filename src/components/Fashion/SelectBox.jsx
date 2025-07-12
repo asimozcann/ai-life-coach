@@ -1,4 +1,4 @@
-// src/components/SelectBox.jsx
+
 const SelectBox = ({ label, options, selected, onSelect }) => {
   return (
     <div>
