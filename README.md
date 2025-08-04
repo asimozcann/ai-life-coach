@@ -9,7 +9,7 @@ This is an AI-powered chat application built using **React**, **Firebase**, and 
 - Clean and responsive design
 
 ## Live Demo
-👉 [Link to deployed site]
+👉[https://ai-life-coach-ozcan.vercel.app/](https://ai-life-coach-ozcan.vercel.app/)
 
 ## Tech Stack
 - React
